@@ -188,3 +188,18 @@ void printGraph(Graph* graph) {
   }
   printf("\n<\\Graph>\n");
 }
+
+void printFound(Graph* graph) {
+  printf("Found (BLACK): [");
+  int firstNode = 1;
+  for (int i = 0; i < graph->size; i++) {
+    if (graph->nodes[i]->color == BLACK) {
+      if (!firstNode) {
+        printf(",");
+      }
+      printf("%c", graph->nodes[i]->name);
+      firstNode = 0;
+    }
+  }
+  printf("]\n");
+}

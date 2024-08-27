@@ -29,5 +29,6 @@ void freeNode(Node* node);
 void freeGraph(Graph* graph);
 void printNode(Node* node);
 void printGraph(Graph* graph);
+void printFound(Graph* graph);
 
 #endif  // GRAPH_H

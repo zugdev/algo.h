@@ -49,5 +49,6 @@ int main(int argc, char* argv[]) {
 
   bfs(graph, a);
   printGraph(graph);
+  printFound(graph);
   freeGraph(graph);
 }
