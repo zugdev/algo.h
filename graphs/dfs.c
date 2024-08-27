@@ -1,9 +1,20 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "graph.h"
-#include "queue.h"
 
 int time;
+
+void dfs_visit(Node* node);  // c interface
+
+void dfs(Graph* graph) {
+  time = 0;
+  for (int i = 0; i < graph->size; i++) {
+    if (graph->nodes[i]->color == WHITE) {
+      dfs_visit(graph->nodes[i]);
+    }
+  }
+}
 
 void dfs_visit(Node* node) {
   time++;
@@ -19,15 +30,6 @@ void dfs_visit(Node* node) {
   node->color = BLACK;
   time++;
   node->t_leaving = time;
-}
-
-void dfs(Graph* graph) {
-  time = 0;
-  for (int i = 0; i < graph->size; i++) {
-    if (graph->nodes[i]->color == WHITE) {
-      dfs_visit(graph->nodes[i]);
-    }
-  }
 }
 
 int main(int argc, char* argv[]) {
