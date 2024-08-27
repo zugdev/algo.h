@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "graph.h"
-#include "queue.h"
+#include "headers/graph.h"
+#include "headers/queue.h"
 
 void bfs(Graph* graph, Node* startNode) {
   Queue* queue = createQueue(graph->size);
