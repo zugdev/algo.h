@@ -82,6 +82,8 @@ Graph* createGraph(Node** nodes, int size) {
   return graph;
 }
 
+// this is the same as transposing the graph matrix
+// most of the code is to clone objects and not copy object address
 Graph* invertArcs(Graph* graph) {
   Graph* invertedGraph = (Graph*)malloc(sizeof(Graph));
   if (!invertedGraph) {
@@ -92,7 +94,7 @@ Graph* invertArcs(Graph* graph) {
   invertedGraph->nodes = (Node**)malloc(graph->size * sizeof(Node*));
   invertedGraph->size = graph->size;
 
-  // Clone nodes to the new graph
+  // clone nodes to the new graph
   for (int i = 0; i < graph->size; i++) {
     Node* original = graph->nodes[i];
     Node* copy = createNode(original->name);
@@ -100,7 +102,7 @@ Graph* invertArcs(Graph* graph) {
     invertedGraph->nodes[i] = copy;
   }
 
-  // Invert the arcs
+  // invert the arcs / transpose
   for (int i = 0; i < graph->size; i++) {
     Node* originalNode = graph->nodes[i];
     for (int j = 0; j < originalNode->out_degree; j++) {
