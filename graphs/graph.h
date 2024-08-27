@@ -23,10 +23,11 @@ typedef struct Graph {
 Node* createNode(char name);
 void addArc(Node* from, Node* to);
 void addEdge(Node* a, Node* b);
-void freeNode(Node* node);
 Graph* createGraph(Node** nodes, int size);
 Graph* invertArcs(Graph* graph);
-void printGraph(Graph* graph);
+void freeNode(Node* node);
 void freeGraph(Graph* graph);
+void printNode(Node* node);
+void printGraph(Graph* graph);
 
 #endif  // GRAPH_H
