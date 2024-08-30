@@ -1,4 +1,5 @@
 #include "stack.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 Stack* createStack(int capacity) {
@@ -29,4 +30,12 @@ int isStackEmpty(Stack* stack) {
 void freeStack(Stack* stack) {
   free(stack->elements);
   free(stack);
+}
+
+void printStack(Stack* stack) {
+  printf("Stack: ");
+  for (int i = stack->top; i >= 0; i--) {
+    printf("%c ", stack->elements[i]->name);
+  }
+  printf("\n");
 }

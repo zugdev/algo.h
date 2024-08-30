@@ -14,5 +14,6 @@ void push(Stack* stack, Node* element);
 Node* pop(Stack* stack);
 int isStackEmpty(Stack* stack);
 void freeStack(Stack* stack);
+void printStack(Stack* stack);
 
 #endif  // STACK_H
