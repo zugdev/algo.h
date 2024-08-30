@@ -4,22 +4,20 @@
 #include "headers/graph.h"
 #include "headers/stack.h"
 
-int time;
-
-void dfs_visit(Node* node, Stack* stack);  // c interface
+void dfs_visit(Node* node, Stack* stack, int time);  // c interface
 
 Stack* dfs(Graph* graph) {
-  time = 0;
+  int time = 0;
   Stack* stack = createStack(graph->size);
   for (int i = 0; i < graph->size; i++) {
     if (graph->nodes[i]->color == WHITE) {
-      dfs_visit(graph->nodes[i], stack);
+      dfs_visit(graph->nodes[i], stack, time);
     }
   }
   return stack;
 }
 
-void dfs_visit(Node* node, Stack* stack) {
+void dfs_visit(Node* node, Stack* stack, int time) {
   time++;
   node->t_entering = time;
   node->color = GRAY;
@@ -27,7 +25,7 @@ void dfs_visit(Node* node, Stack* stack) {
     Node* son = node->neighbors[i];
     if (son->color == WHITE) {
       son->parent = node;
-      dfs_visit(son, stack);
+      dfs_visit(son, stack, time);
     }
   }
   node->color = BLACK;
