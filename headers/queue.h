@@ -16,5 +16,6 @@ void enqueue(Queue* queue, Node* element);
 Node* dequeue(Queue* queue);
 int isQueueEmpty(Queue* queue);
 void freeQueue(Queue* queue);
+void printQueue(Queue* queue);
 
 #endif  // QUEUE_H

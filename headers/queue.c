@@ -49,3 +49,11 @@ void freeQueue(Queue* queue) {
   free(queue->elements);
   free(queue);
 }
+
+void printQueue(Queue* queue) {
+  printf("Queue: ");
+  for (int i = 0; i < queue->size; i++) {
+    printf("%c ", queue->elements[i]->name);
+  }
+  printf("\n");
+}
