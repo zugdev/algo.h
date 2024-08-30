@@ -61,4 +61,5 @@ int main(int argc, char* argv[]) {
   printStack(stack);
 
   freeGraph(graph);
+  freeStack(stack);
 }
