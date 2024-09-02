@@ -29,7 +29,8 @@ void bfs(Graph* graph, Node* startNode) {
   freeQueue(queue);
 }
 
-int main(int argc, char* argv[]) {
+int bfs_example() {
+  printf("bfs example\n");
   Node* a = createNode('a');
   Node* b = createNode('b');
   Node* c = createNode('c');
@@ -49,7 +50,10 @@ int main(int argc, char* argv[]) {
   Graph* graph = createGraph(nodes, 6);
 
   bfs(graph, a);
+
   printGraph(graph);
   printFound(graph);
+
   freeGraph(graph);
+  return 0;
 }
