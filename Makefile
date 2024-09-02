@@ -1,36 +1,28 @@
-# Compiler
 CC = gcc
+CFLAGS = -Wall -Wextra -Iheaders
 
-# Compiler flags
-CFLAGS = -Wall
-
-# Source files
-SRC = $(wildcard *.c tests/*.c)
-HEADERS_SRC = $(wildcard headers/*.c)
-
-# Output directory
+SRC_DIR = .
+TEST_DIR = tests
 OUT_DIR = out
+HEADERS_DIR = headers
+HEADERS_FILES = $(wildcard $(HEADERS_DIR)/*.c)
 
-# Executables (derived from SRC files)
-EXECS = $(patsubst %.c,$(OUT_DIR)/%,$(notdir $(SRC)))
+SRC_FILES = $(filter-out $(SRC_DIR)/main.c, $(wildcard $(SRC_DIR)/*.c))
+TEST_FILES = $(wildcard $(TEST_DIR)/*.c)
 
-# Default rule
-all: $(EXECS)
+MAIN_BIN = $(OUT_DIR)/main
 
-# Rule to create output directory if it doesn't exist
-$(OUT_DIR):
-	mkdir -p $(OUT_DIR)
+TEST_BINS = $(TEST_FILES:$(TEST_DIR)/%.c=$(OUT_DIR)/%)
 
-# General rule to compile each source file with headers
-$(OUT_DIR)/%: %.c $(HEADERS_SRC) | $(OUT_DIR)
-	$(CC) $^ -o $@ $(CFLAGS)
+all: $(MAIN_BIN) $(TEST_BINS)
 
-$(OUT_DIR)/%: tests/%.c $(HEADERS_SRC) | $(OUT_DIR)
-	$(CC) $^ -o $@ $(CFLAGS)
+$(MAIN_BIN): $(HEADERS_FILES) $(SRC_FILES) 	main.c
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Clean rule
+$(OUT_DIR)/%: $(HEADERS_FILES) $(SRC_FILES) $(TEST_DIR)/%.c
+	$(CC) $(CFLAGS) -o $@ $(HEADERS_FILES) $(SRC_FILES) $(TEST_DIR)/$*.c
+
 clean:
-	rm -rf $(OUT_DIR)/*.o $(EXECS)
+	rm -f $(OUT_DIR)/*
 
-# Phony targets
 .PHONY: all clean
