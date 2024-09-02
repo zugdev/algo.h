@@ -184,11 +184,11 @@ void printNode(Node* node) {
 }
 
 void printGraph(Graph* graph) {
-  printf("<Graph>\n");
+  printf("<Graph>");
   for (int i = 0; i < graph->size; i++) {
     printNode(graph->nodes[i]);
   }
-  printf("\n<\\Graph>\n");
+  printf("<\\Graph>\n");
 }
 
 void printFound(Graph* graph) {
