@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "headers/algo.h"
+#include "headers/colors.h"
 #include "headers/graph.h"
 #include "headers/queue.h"
 #include "headers/stack.h"
@@ -8,8 +9,10 @@
 int main(int argc, char* argv[]) {
   if (argc > 1) {
     if (argc == 2) {
+      yellow();
       printf("> tip: you can run multiple algos on CLI: %s bfs dfs kosajaru\n",
              argv[0]);
+      reset_color();
     }
     for (int i = 1; i < argc; i++) {
       if (strcmp(argv[i], "bfs") == 0) {
@@ -23,7 +26,9 @@ int main(int argc, char* argv[]) {
   } else {
     char choice;
 
+    yellow();
     printf("> tip: you can run what u want on CLI: %s bfs\n", argv[0]);
+    reset_color();
     printf("what algo do you want to run\n");
     printf("  > 1. bfs\n");
     printf("  > 2. dfs\n");

@@ -1,6 +1,7 @@
 #include "graph.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "colors.h"
 
 static int id = 0;
 
@@ -129,7 +130,9 @@ void freeGraph(Graph* graph) {
 }
 
 void printNode(Node* node) {
+  magenta();
   printf("\n-- Node %c (id: %d)\n", node->name, node->id);
+  reset_color();
 
   if (node->distance == -1) {
     printf("\tdistance    -\n");
@@ -184,11 +187,11 @@ void printNode(Node* node) {
 }
 
 void printGraph(Graph* graph) {
-  printf("<Graph>");
+  printf_blue("<Graph>");
   for (int i = 0; i < graph->size; i++) {
     printNode(graph->nodes[i]);
   }
-  printf("<\\Graph>\n");
+  printf_blue("<\\Graph>\n");
 }
 
 void printFound(Graph* graph) {

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "headers/algo.h"
+#include "headers/colors.h"
 #include "headers/graph.h"
 #include "headers/stack.h"
 
@@ -41,7 +42,7 @@ void dfs_visit(Node* node, Stack* stack, int time) {
 }
 
 int dfs_example() {
-  printf("dfs example\n");
+  printf_cyan("dfs example\n");
   Node* a = createNode('a');
   Node* b = createNode('b');
   Node* c = createNode('c');

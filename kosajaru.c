@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "headers/algo.h"
+#include "headers/colors.h"
 #include "headers/graph.h"
 #include "headers/stack.h"
 
@@ -30,7 +31,7 @@ void kosaraju(Graph* graph) {
 }
 
 int kosajaru_example() {
-  printf("kosajaru example\n");
+  printf_cyan("kosajaru example\n");
   Node* a = createNode('a');
   Node* b = createNode('b');
   Node* c = createNode('c');

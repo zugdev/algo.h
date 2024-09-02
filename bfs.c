@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "headers/algo.h"
+#include "headers/colors.h"
 #include "headers/graph.h"
 #include "headers/queue.h"
 
@@ -30,7 +31,7 @@ void bfs(Graph* graph, Node* startNode) {
 }
 
 int bfs_example() {
-  printf("bfs example\n");
+  printf_cyan("bfs example\n");
   Node* a = createNode('a');
   Node* b = createNode('b');
   Node* c = createNode('c');
