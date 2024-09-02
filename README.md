@@ -6,6 +6,8 @@
 
 - dfs
 
+- kosajaru 
+
 ### understanding
 
 you should know at least the principal structs, for a list of useful util functions dive into `/headers` specially `graph.h`
@@ -45,11 +47,31 @@ to compile just run:
 make
 ```
 
-check your `/out` dir and run executables:
+algos are centralized through a `main.c` entrypoint 
 ```shell
 # linux
-./out/bfs
+./out/main 
+
+# > tip: you can run what u want on CLI: ./out/main bfs
+# what algo do you want to run
+#   > 1. bfs
+#   > 2. dfs
+#   > 3. kosajaru
+
+bfs
+
+# bfs runs
 ```
+
+you can run them directly through CLI
+```shell
+# linux
+./out/main bfs
+
+# bfs runs
+```
+
+test files are compiled with their own main functions, if interested run them separetely
 
 ### commit msg conventions:
 
