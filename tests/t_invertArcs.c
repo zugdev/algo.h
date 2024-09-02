@@ -4,7 +4,7 @@
 
 // #define PRINT_GRAPHS
 
-int main(int argc, char* argv[]) {
+int main() {
   Node* a = createNode('a');
   Node* b = createNode('b');
   Node* c = createNode('c');
