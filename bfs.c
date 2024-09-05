@@ -5,6 +5,27 @@
 #include "headers/graph.h"
 #include "headers/queue.h"
 
+/*
+ * Breadth-First Search (BFS) Algorithm:
+ *
+ * 1. It searchs by level, starting from a node it will visit all of it's sons
+ *    before visiting every grandson.
+ *
+ * 2. All nodes start as WHITE (unvisited). BFS begins from the start node,
+ *    which is marked GRAY (discovered) and enqueued for exploration. The
+ *    distance from the start node to itself is set to 0.
+ *
+ * 3. The algorithm proceeds by dequeuing a node, marking it BLACK (fully
+ *    processed) after all its neighbors are explored. For each unvisited
+ *    (WHITE) neighbor, the neighbor is marked GRAY, its distance from the start
+ *    node is set, and it is enqueued.
+ *
+ * 4. This process continues until the queue is empty, indicating that all
+ *    reachable nodes have been explored. The nodes are visited level by level,
+ *    making BFS particularly useful for finding the shortest path in unweighted
+ *    graphs.
+ */
+
 void bfs(Graph* graph, Node* startNode) {
   Queue* queue = createQueue(graph->size);
   startNode->color = GRAY;
