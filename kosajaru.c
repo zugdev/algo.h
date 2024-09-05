@@ -7,27 +7,31 @@
 
 void kosaraju(Graph* graph) {
   int time = 0;
-  Stack* stack = dfs(graph, time);
-  Graph* inverted_graph = invertArcs(graph);
+  Stack* stack = dfs(graph, time);            // first DFS to fill the stack
+  Graph* inverted_graph = invertArcs(graph);  // invert the graph edges
 
-  for (int i = 0; i < graph->size; i++) {
-    graph->nodes[i]->color = WHITE;
+  // reset node colors for the second DFS
+  for (int i = 0; i < inverted_graph->size; i++) {
+    inverted_graph->nodes[i]->color = WHITE;
   }
 
-  printf("strongly connected components:\n");
+  printf("Strongly connected components:\n");
 
-  int i = 1;
+  int component_number = 1;
+  // second DFS based on the finishing times from the first DFS
   while (!isStackEmpty(stack)) {
     Node* node = pop(stack);
-    if (node->color == WHITE) {
-      printf("component %d: ", i++);
-      dfs_visit(node, NULL, time);
+    Node* inverted_node =
+        inverted_graph->nodes[node->id];  // access the corresponding node in
+                                          // the inverted graph by index
+    if (inverted_node->color == WHITE) {
+      printf("Component %d: ", component_number++);
+      dfs_visit(inverted_node, NULL, &time);  // DFS on the inverted graph
       printf("\n");
     }
   }
 
   freeStack(stack);
-  freeGraph(inverted_graph);
 }
 
 int kosajaru_example() {
@@ -43,10 +47,9 @@ int kosajaru_example() {
 
   addArc(a, b);
   addArc(a, c);
-  addArc(d, e);
+  addArc(b, d);
+  addArc(d, b);
   addArc(e, f);
-  addArc(f, d);
-  addArc(e, b);
 
   Graph* graph = createGraph(nodes, 6);
 
