@@ -14,9 +14,12 @@ MAIN_BIN = $(OUT_DIR)/main
 
 TEST_BINS = $(TEST_FILES:$(TEST_DIR)/%.c=$(OUT_DIR)/%)
 
-all: $(MAIN_BIN) $(TEST_BINS)
+all: $(OUT_DIR) $(MAIN_BIN) $(TEST_BINS)
 
-$(MAIN_BIN): $(HEADERS_FILES) $(SRC_FILES) 	main.c
+$(OUT_DIR):
+	mkdir -p $(OUT_DIR)
+
+$(MAIN_BIN): $(HEADERS_FILES) $(SRC_FILES) main.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(OUT_DIR)/%: $(HEADERS_FILES) $(SRC_FILES) $(TEST_DIR)/%.c
