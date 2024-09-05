@@ -6,6 +6,28 @@
 #include "headers/graph.h"
 #include "headers/stack.h"
 
+/*
+ * Depth-First Search (DFS) Algorithm:
+ *
+ * 1. All nodes start WHITE (unvisited). DFS will be called from every WHITE
+ *    node to ensure all nodes, even disconnected ones, are discovered.
+ *
+ * 2. The algorithm proceeds by visiting each node in the graph. When we first
+ *    encounter a node, we mark it as GRAY to indicate that it is being
+ *    explored.
+ *
+ * 3. From the current node, we recursively explore all possible paths by
+ *    visiting each of its unvisited (WHITE) neighbors.
+ *
+ * 4. After all the descendants of a node have been fully explored, we mark the
+ *    node as fully processed, which we denote as BLACK. At this point, the
+ *    node's finishing time is recorded, and it is pushed onto the stack,
+ *    indicating that it is finished.
+ *
+ * 5. The stack will eventually contain all nodes in the order of their
+ *    finishing times, with the most recently finished node on top.
+ */
+
 void dfs_visit(Node* node, Stack* stack, int* time);  // c interface
 
 Stack* dfs(Graph* graph, int time) {
