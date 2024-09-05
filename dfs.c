@@ -6,22 +6,22 @@
 #include "headers/graph.h"
 #include "headers/stack.h"
 
-void dfs_visit(Node* node, Stack* stack, int time);  // c interface
+void dfs_visit(Node* node, Stack* stack, int* time);  // c interface
 
 Stack* dfs(Graph* graph, int time) {
   time = 0;
   Stack* stack = createStack(graph->size);
   for (int i = 0; i < graph->size; i++) {
     if (graph->nodes[i]->color == WHITE) {
-      dfs_visit(graph->nodes[i], stack, time);
+      dfs_visit(graph->nodes[i], stack, &time);
     }
   }
   return stack;
 }
 
-void dfs_visit(Node* node, Stack* stack, int time) {
-  time++;
-  node->t_entering = time;
+void dfs_visit(Node* node, Stack* stack, int* time) {
+  (*time)++;
+  node->t_entering = *time;
   node->color = GRAY;
   for (int i = 0; i < node->out_degree; i++) {
     Node* son = node->neighbors[i];
@@ -31,8 +31,8 @@ void dfs_visit(Node* node, Stack* stack, int time) {
     }
   }
   node->color = BLACK;
-  time++;
-  node->t_leaving = time;
+  (*time)++;
+  node->t_leaving = *time;
   if (stack == NULL) {
     printf("%c ", node->name);
   }
@@ -54,10 +54,9 @@ int dfs_example() {
 
   addArc(a, b);
   addArc(a, c);
-  addArc(d, e);
+  addArc(b, d);
+  addArc(d, b);
   addArc(e, f);
-  addArc(f, d);
-  addArc(e, b);
 
   Graph* graph = createGraph(nodes, 6);
 
