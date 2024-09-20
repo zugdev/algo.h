@@ -2,11 +2,17 @@
 
 *might* add notes and references later
 
-- bfs
+- bfs 
+
+breath first search, goes by levels first all distance = 0 nodes, then all distance = 1 nodes...
 
 - dfs
 
+depth first search, chooses a path from root and goes to the end of it recursively before returning. it proceeds by doing all possible paths and marking already visited ones.
+
 - kosajaru 
+
+finds strongly connected components, this can also be used to find elbows and articulations
 
 ### understanding
 
