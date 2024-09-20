@@ -115,6 +115,40 @@ Graph* invertArcs(Graph* graph) {
   return invertedGraph;
 }
 
+void relax(Node* u, Node* v, int weight) {
+    if (v->distance == -1 || v->distance > u->distance + weight) {
+        v->distance = u->distance + weight;
+        v->parent = u;
+    }
+}
+
+void topologicalSortUtil(Node* node, int* visited, Stack* stack) {
+    visited[node->id] = 1; 
+    
+    for (int i = 0; i < node->out_degree; i++) {
+        Node* neighbor = node->neighbors[i];
+        if (!visited[neighbor->id]) {
+            topologicalSortUtil(neighbor, visited, stack); 
+        }
+    }
+    push(stack, node);  
+}
+
+Stack* topologicalSort(Graph* graph) {
+    Stack* stack = createStack(graph->size);  
+
+    int* visited = (int*)calloc(graph->size, sizeof(int)); 
+
+    for (int i = 0; i < graph->size; i++) {
+        if (!visited[i]) {
+            topologicalSortUtil(graph->nodes[i], visited, stack);
+        }
+    }
+
+    free(visited);
+    return stack;
+}
+
 void freeNode(Node* node) {
   if (node->neighbors != NULL) {
     free(node->neighbors);
@@ -184,6 +218,16 @@ void printNode(Node* node) {
     }
     printf("%c,", neighbor->name);
   }
+}
+
+void printNodeElement(void* element) {
+    Node* node = (Node*)element;  // cast back to Node*
+    printf("%c ", node->name);
+}
+
+void printEdgeElement(void* element) {
+    Edge* edge = (Edge*)element;  // cast back to Edge*
+    printf("(%c <-> %c) ", edge->u->name, edge->v->name);
 }
 
 void printGraph(Graph* graph) {
