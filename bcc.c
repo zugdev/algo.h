@@ -44,7 +44,6 @@ void dfs_visit_bcc(Node* node, Stack* stack, int* time, int* component_count) {
           Node* edge_node = pop(stack);
           if (edge_node == node) break;
         }
-        printf("\n");
       }
 
       children++;
