@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
   if (argc > 1) {
     if (argc == 2) {
       yellow();
-      printf("> tip: you can run multiple algos on CLI: %s bfs dfs kosajaru\n",
+      printf("> tip: you can run multiple algos in one go on CLI, i.e: %s bfs dfs kosajaru\n",
              argv[0]);
       reset_color();
     }
@@ -21,6 +21,8 @@ int main(int argc, char* argv[]) {
         dfs_example(argc, argv);
       } else if (strcmp(argv[i], "kosajaru") == 0) {
         kosajaru_example(argc, argv);
+      } else if (strcmp(argv[i], "bcc") == 0) {
+        bcc_example(argc, argv);
       }
     }
   } else {
@@ -33,6 +35,7 @@ int main(int argc, char* argv[]) {
     printf("  > 1. bfs\n");
     printf("  > 2. dfs\n");
     printf("  > 3. kosajaru\n");
+    printf("  > 4. bcc\n");
     scanf("%c", &choice);
     printf("\n");
 
@@ -45,6 +48,9 @@ int main(int argc, char* argv[]) {
         break;
       case '3':
         kosajaru_example(argc, argv);
+        break;
+      case '4':
+        bcc_example(argc, argv);
         break;
       default:
         printf("invalid choice\n");

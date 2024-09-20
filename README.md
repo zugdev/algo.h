@@ -11,8 +11,11 @@
 
 - **Kosaraju's Algorithm**
 
-  Kosaraju's Algorithm finds strongly connected components in a graph. This can also be used to identify articulation points and bridges.
+  Kosaraju's Algorithm finds strongly connected components in a graph.
 
+- **BCC (Biconnected Components)**
+
+  Finds articulation points in non-directed graphs, this can then be used to calculate biconnected components.
 
 ### understanding
 

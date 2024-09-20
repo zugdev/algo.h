@@ -12,4 +12,5 @@ void kosajaru(Graph* graph);
 int dfs_example();
 int bfs_example();
 int kosajaru_example();
+int bcc_example();
 #endif  // ALGO_H
