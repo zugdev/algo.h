@@ -20,7 +20,7 @@ void kosaraju(Graph* graph) {
   int component_number = 1;
   // second DFS based on the finishing times from the first DFS
   while (!isStackEmpty(stack)) {
-    Node* node = pop(stack);
+    Node* node = (Node*)pop(stack);
     Node* inverted_node =
         inverted_graph->nodes[node->id];  // access the corresponding node in
                                           // the inverted graph by index

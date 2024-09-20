@@ -7,6 +7,7 @@
 #include "headers/stack.h"
 
 void dfs_visit(Node* node, Stack* stack, int* time);  // c interface
+void printNodeElement(void* element);
 
 Stack* dfs(Graph* graph, int time) {
   time = 0;
@@ -41,6 +42,11 @@ void dfs_visit(Node* node, Stack* stack, int* time) {
   }
 }
 
+void printNodeElement(void* element) {
+    Node* node = (Node*)element;  // cast back to Node*
+    printf("%c ", node->name);
+}
+
 int dfs_example() {
   printf_cyan("dfs example\n");
   Node* a = createNode('a');
@@ -63,7 +69,7 @@ int dfs_example() {
   Stack* stack = dfs(graph, 0);
 
   printGraph(graph);
-  printStack(stack);
+  printStack(stack, printNodeElement);
 
   freeGraph(graph);
   freeStack(stack);
