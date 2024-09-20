@@ -1,8 +1,6 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include "graph.h"
-
 typedef struct Stack {
     void** elements;  // stack of generic void* elements
     int top;

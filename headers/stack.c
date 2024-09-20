@@ -40,13 +40,3 @@ void printStack(Stack* stack, void (*printElement)(void*)) {
     }
     printf("\n");
 }
-
-void printNodeElement(void* element) {
-    Node* node = (Node*)element;  // cast back to Node*
-    printf("%c ", node->name);
-}
-
-void printEdgeElement(void* element) {
-    Edge* edge = (Edge*)element;
-    printf("(%c <-> %c) ", edge->u->name, edge->v->name);
-}
