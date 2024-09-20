@@ -1,18 +1,18 @@
 ### an algo collection
-
 *might* add notes and references later
 
-- bfs 
+- **BFS (Breadth-First Search)**
 
-breath first search, goes by levels first all distance = 0 nodes, then all distance = 1 nodes...
+  Breadth-First Search explores nodes level by level. It first visits all nodes at distance 0, then all nodes at distance 1, and so on.
 
-- dfs
+- **DFS (Depth-First Search)**
 
-depth first search, chooses a path from root and goes to the end of it recursively before returning. it proceeds by doing all possible paths and marking already visited ones.
+  Depth-First Search explores as far as possible along each branch before backtracking. It chooses a path from the root and goes to the end of it recursively before returning. It proceeds by exploring all possible paths and marking already visited nodes.
 
-- kosajaru 
+- **Kosaraju's Algorithm**
 
-finds strongly connected components, this can also be used to find elbows and articulations
+  Kosaraju's Algorithm finds strongly connected components in a graph. This can also be used to identify articulation points and bridges.
+
 
 ### understanding
 
