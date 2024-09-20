@@ -7,15 +7,20 @@ typedef struct Node {
   char name;                  // this is for printing only
   int id;                     // node's backend identifier
   int distance;               // distance from an arbitrary root
-  int t_entering;             //  time entering the node for dfs
+  int t_entering;             // time entering the node for dfs
   int t_leaving;              // time leaving the node for dfs
   Color color;                // color for algos like bfs, dfs
-  struct Node** neighbors;    //  list of adjacency
+  struct Node** neighbors;    // list of adjacency
   int out_degree;             // number of edges leaving the graph (directed or not
   struct Node* parent;        // direct parent
   int low;                    // lowest point reachable from this node
   int is_articulation_point;  // flag for articulation points
 } Node;
+
+typedef struct Edge {
+    Node* u;
+    Node* v;
+} Edge;
 
 typedef struct Graph {
   Node** nodes;
