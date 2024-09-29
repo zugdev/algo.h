@@ -1,4 +1,8 @@
 #include "mst.h"
+#include <limits.h>
+#include <stdlib.h>
+
+#define INF INT_MAX
 
 Node* find(Subset* subsets, Node* u) {
   if (subsets[u->id].parent != u) {
@@ -24,4 +28,18 @@ void unionSet(Subset* subsets, Node* u, Node* v) {
     subsets[rootV->id].parent = rootU;
     subsets[rootU->id].rank++;
   }
+}
+
+Node* extractMin(Node** nodes, int* key, int* inMST, int size) {
+  int minKey = INF;
+  Node* minNode = NULL;
+
+  for (int i = 0; i < size; i++) {
+    if (!inMST[nodes[i]->id] && key[nodes[i]->id] < minKey) {
+      minKey = key[nodes[i]->id];
+      minNode = nodes[i];
+    }
+  }
+
+  return minNode;
 }
