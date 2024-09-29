@@ -8,7 +8,7 @@ Queue* createQueue(int capacity) {
     fprintf(stderr, "Memory allocation failed for Queue\n");
     exit(1);
   }
-  queue->elements = (Node**)malloc(capacity * sizeof(Node*));
+  queue->elements = (void**)malloc(capacity * sizeof(void*));
   if (!queue->elements) {
     fprintf(stderr, "Memory allocation failed for Queue elements\n");
     exit(1);
@@ -20,7 +20,7 @@ Queue* createQueue(int capacity) {
   return queue;
 }
 
-void enqueue(Queue* queue, Node* element) {
+void enqueue(Queue* queue, void* element) {
   if (queue->size == queue->capacity) {
     fprintf(stderr, "Queue is full\n");
     exit(1);
@@ -30,12 +30,12 @@ void enqueue(Queue* queue, Node* element) {
   queue->size++;
 }
 
-Node* dequeue(Queue* queue) {
+void* dequeue(Queue* queue) {
   if (queue->size == 0) {
     fprintf(stderr, "Queue is empty\n");
     exit(1);
   }
-  Node* element = queue->elements[queue->front];
+  void* element = queue->elements[queue->front];
   queue->front = (queue->front + 1) % queue->capacity;
   queue->size--;
   return element;
@@ -50,10 +50,20 @@ void freeQueue(Queue* queue) {
   free(queue);
 }
 
-void printQueue(Queue* queue) {
+void printNodeQueue(Queue* queue) {
   printf("Queue: ");
   for (int i = 0; i < queue->size; i++) {
-    printf("%c ", queue->elements[i]->name);
+    Node* element = (Node*)queue->elements[i];
+    printf("%c ", element->name);
+  }
+  printf("\n");
+}
+
+void printEdgeQueue(Queue* queue) {
+  printf("Queue: ");
+  for (int i = 0; i < queue->size; i++) {
+    Edge* element = (Edge*)queue->elements[i];
+    printf("(%c,%c) ", element->u->name, element->v->name);
   }
   printf("\n");
 }
