@@ -22,6 +22,7 @@ typedef struct Node {
 typedef struct Edge {
     Node* u;
     Node* v;
+    int weight;
 } Edge;
 
 typedef struct Graph {
@@ -32,6 +33,7 @@ typedef struct Graph {
 // node functions
 Node* createNode(char name);
 Edge* createEdge(Node* a, Node* b);
+Edge* createWeightedEdge(Node* a, Node* b, int weight);
 void addArc(Node* from, Node* to);
 void addEdge(Node* a, Node* b);
 Graph* createGraph(Node** nodes, int size);
