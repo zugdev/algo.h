@@ -15,8 +15,8 @@ typedef struct Node {
     struct Node** neighbors;    // list of adjacency
     int out_degree;             // number of edges leaving the graph (directed or not)
     struct Node* parent;        // direct parent
-    int low;                    // lowest point reachable from this node
-    int is_articulation_point;  // flag for articulation points
+    int ret;                    // this is used to find blocks
+    int component_number;       // used to find blocks/components
 } Node;
 
 typedef struct Edge {
@@ -31,6 +31,7 @@ typedef struct Graph {
 
 // node functions
 Node* createNode(char name);
+Edge* createEdge(Node* a, Node* b);
 void addArc(Node* from, Node* to);
 void addEdge(Node* a, Node* b);
 Graph* createGraph(Node** nodes, int size);

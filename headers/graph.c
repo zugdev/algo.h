@@ -23,6 +23,17 @@ Node* createNode(char name) {
   return node;
 }
 
+Edge* createEdge(Node* u, Node* v) {
+  Edge* edge = (Edge*)malloc(sizeof(Edge));
+  edge->u = u;
+  edge->v = v;
+  if (!edge) {
+    fprintf(stderr, "Memory allocation failed for Edge\n");
+    exit(1);
+  }
+  return edge;
+}
+
 void addArc(Node* from, Node* to) {
   from->out_degree++;
   if (from->neighbors == NULL) {

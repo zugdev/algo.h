@@ -22,55 +22,58 @@ void dfs_bcc(Graph* graph) {
 // DFS with BCC detection
 void dfs_visit_bcc(Node* node, Stack* stack, int* time, int* component_count) {
   (*time)++;
-  node->t_entering = node->low = *time;
+  node->t_entering = node->ret = *time;
   node->color = GRAY;
-  int children = 0;
 
   for (int i = 0; i < node->out_degree; i++) {
     Node* neighbor = node->neighbors[i];
+    Edge* edge = createEdge(node, neighbor);
 
     if (neighbor->color == WHITE) {
       neighbor->parent = node;
-      push(stack, node);  // store edge (node, neighbor)
+      push(stack, edge);  // queue edge (node, neighbor)
       dfs_visit_bcc(neighbor, stack, time, component_count);
-      node->low = (node->low < neighbor->low) ? node->low : neighbor->low;
 
-      // articulation point condition
-      if (neighbor->low >= node->t_entering && node->parent != NULL) {
-        printf("articulation point: %c\n", node->name);
+      if (neighbor->ret >= node->t_entering) {
         (*component_count)++;
+        magenta();
+        printf("Component %d --\n", *component_count);
+        reset_color();
+        printf("articulation point: %c\n", node->name);
+        printf("edges: ");
         // bcc component: pop the stack until you get to this edge
         while (stack->top != -1) {
-          Node* edge_node = pop(stack);
-          if (edge_node == node) break;
+          Edge* popped_edge = pop(stack);
+          popped_edge->u->component_number = *component_count;
+          popped_edge->v->component_number = *component_count;
+          printf("(%c,%c) ", popped_edge->u->name, popped_edge->v->name);
+          if (popped_edge->u == node && popped_edge->v == neighbor) {
+            printf_magenta("\n---------------\n");
+            break;
+          }
+        }
+      } else {
+        if (node->ret > neighbor->ret) {
+          node->ret = neighbor->ret;
         }
       }
-
-      children++;
-    } else if (neighbor != node->parent && neighbor->t_entering < node->low) {
-      // back edge
-      node->low = (node->low < neighbor->t_entering) ? node->low : neighbor->t_entering;
-      push(stack, node);  // store edge (node, neighbor)
+    } else {
+      if (neighbor != node->parent) {
+        if (neighbor->t_entering < node->t_entering) {  // prevent fake advance
+          push(stack, edge);
+        }
+        if (node->ret > neighbor->t_entering) {
+          node->ret = neighbor->t_entering;
+        }
+      }
     }
   }
 
   node->color = BLACK;
-
-  // special case: root node
-  if (node->parent == NULL && children > 1) {
-    printf("root articulation point: %c\n", node->name);
-    (*component_count)++;
-    while (stack->top != -1) {
-      Node* edge_node = pop(stack);
-      printf("%c ", edge_node->name);
-      if (edge_node == node) break;
-    }
-    printf("\n");
-  }
 }
 
 int bcc_example() {
-  printf_cyan("find biconnected components example\n");
+  printf_cyan("find biconnected components example\n\n");
   Node* a = createNode('a');
   Node* b = createNode('b');
   Node* c = createNode('c');
