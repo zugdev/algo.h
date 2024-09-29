@@ -46,6 +46,16 @@ Edge* createWeightedEdge(Node* u, Node* v, int weight) {
   return edge;
 }
 
+int compareEdges(const void* a, const void* b) {
+  Edge* edgeA = *(Edge**)a;
+  Edge* edgeB = *(Edge**)b;
+  return edgeA->weight - edgeB->weight;
+}
+
+void sortWeightedEdges(Edge** edges, int size) {
+  qsort(edges, size, sizeof(Edge*), compareEdges);
+}
+
 void addArc(Node* from, Node* to) {
   from->out_degree++;
   if (from->neighbors == NULL) {

@@ -34,6 +34,7 @@ typedef struct Graph {
 Node* createNode(char name);
 Edge* createEdge(Node* a, Node* b);
 Edge* createWeightedEdge(Node* a, Node* b, int weight);
+void sortWeightedEdges(Edge** edges, int size);
 void addArc(Node* from, Node* to);
 void addEdge(Node* a, Node* b);
 Graph* createGraph(Node** nodes, int size);
