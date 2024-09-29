@@ -85,7 +85,7 @@ int dfs_example() {
   Stack* stack = dfs(graph, 0);
 
   printGraph(graph);
-  printStack(stack);
+  printStack(stack, printNodeElement);
 
   freeGraph(graph);
   freeStack(stack);
