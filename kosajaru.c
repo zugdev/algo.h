@@ -30,7 +30,7 @@
 void kosaraju(Graph* graph) {
   int time = 0;
   Stack* stack = dfs(graph, time);            // first DFS to fill the stack
-  printStack(stack);
+  printStack(stack, printNodeElement);
   Graph* inverted_graph = invertArcs(graph);  // invert the graph edges
 
   // reset node colors for the second DFS
