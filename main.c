@@ -23,6 +23,8 @@ int main(int argc, char* argv[]) {
         kosajaru_example(argc, argv);
       } else if (strcmp(argv[i], "bcc") == 0) {
         bcc_example(argc, argv);
+      } else if (strcmp(argv[i], "kruskal") == 0) {
+        kruskal_example(argc, argv);
       }
     }
   } else {
@@ -36,6 +38,7 @@ int main(int argc, char* argv[]) {
     printf("  > 2. dfs\n");
     printf("  > 3. kosajaru\n");
     printf("  > 4. bcc\n");
+    printf("  > 5. kruskal\n");
     scanf("%c", &choice);
     printf("\n");
 
@@ -51,6 +54,9 @@ int main(int argc, char* argv[]) {
         break;
       case '4':
         bcc_example(argc, argv);
+        break;
+      case '5':
+        kruskal_example(argc, argv);
         break;
       default:
         printf("invalid choice\n");
