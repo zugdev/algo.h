@@ -25,6 +25,8 @@ int main(int argc, char* argv[]) {
         bcc_example(argc, argv);
       } else if (strcmp(argv[i], "kruskal") == 0) {
         kruskal_example(argc, argv);
+      } else if (strcmp(argv[i], "prim") == 0) {
+        prim_example(argc, argv);
       }
     }
   } else {
@@ -39,6 +41,7 @@ int main(int argc, char* argv[]) {
     printf("  > 3. kosajaru\n");
     printf("  > 4. bcc\n");
     printf("  > 5. kruskal\n");
+    printf("  > 6. prim\n");
     scanf("%c", &choice);
     printf("\n");
 
@@ -57,6 +60,9 @@ int main(int argc, char* argv[]) {
         break;
       case '5':
         kruskal_example(argc, argv);
+        break;
+      case '6':
+        prim_example(argc, argv);
         break;
       default:
         printf("invalid choice\n");
